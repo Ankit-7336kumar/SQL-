@@ -1,0 +1,52 @@
+-- 1. .
+SELECT Dept, COUNT(*) AS TotalEmployees
+FROM Employees
+GROUP BY Dept;
+
+-- 2. 
+SELECT Dept, SUM(Salary) AS TotalSalary
+FROM Employees
+GROUP BY Dept;
+
+-- 3..
+SELECT Gender, AVG(Salary) AS AvgSalary
+FROM Employees
+GROUP BY Gender;
+
+-- 4. 
+SELECT Dept, MAX(Salary) AS MaxSalary
+FROM Employees
+GROUP BY Dept;
+
+-- 5. 
+SELECT Role, MIN(Salary) AS MinSalary
+FROM Employees
+GROUP BY Role;
+
+-- 6
+SELECT City, COUNT(*) AS EmpCount
+FROM Employees
+GROUP BY City;
+
+-- 7. 
+SELECT Region, SUM(Salary) AS TotalSalary
+FROM Employees
+GROUP BY Region;
+
+-- 8. 
+SELECT Dept, AVG(Salary) AS AvgSalary
+FROM Employees
+GROUP BY Dept
+ORDER BY AvgSalary DESC;
+
+-- 9
+SELECT City, SUM(Salary) AS TotalSalary
+FROM Employees
+GROUP BY City
+ORDER BY TotalSalary ASC;
+
+-- 10. .
+SELECT Role, COUNT(*) AS EmpCount
+FROM Employees
+GROUP BY Role
+ORDER BY EmpCount DESC, Role ASC;
