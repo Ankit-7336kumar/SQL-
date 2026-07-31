@@ -1,0 +1,50 @@
+SELECT Region, State, SUM(Salary) AS TotalSalary
+FROM Employees
+GROUP BY Region, State;
+
+SELECT Region, COUNT(*) AS EmpCount, AVG(Salary) AS AvgSalary
+FROM Employees
+GROUP BY Region
+HAVING COUNT(*) > 10
+AND AVG(Salary) > 67000;
+
+SELECT City, COUNT(DISTINCT Role) AS UniqueRoles
+FROM Employees
+GROUP BY City;
+
+SELECT Dept, COUNT(*) AS FemaleCount
+FROM Employees
+WHERE Gender = 'F'
+GROUP BY Dept;
+
+SELECT Dept, AVG(Salary) AS AvgSalary
+FROM Employees
+WHERE JoinDate > '2019-01-01'
+GROUP BY Dept;
+
+SELECT City, SUM(Salary) AS TotalSalary
+FROM Employees
+WHERE Dept = 'IT'
+GROUP BY City;
+
+SELECT Role, COUNT(*) AS EmpCount
+FROM Employees
+WHERE Salary > 70000
+GROUP BY Role;
+
+SELECT Dept, MAX(Salary) AS MaxSalary
+FROM Employees
+WHERE Region IN ('South', 'West')
+GROUP BY Dept;
+
+SELECT YEAR(JoinDate) AS JoinYear, COUNT(*) AS EmpCount
+FROM Employees
+WHERE State = 'TX'
+GROUP BY YEAR(JoinDate);
+
+SELECT Dept, COUNT(*) AS EligibleFemales
+FROM Employees
+WHERE Gender = 'F'
+AND Salary > 60000
+GROUP BY Dept
+HAVING COUNT(*) > 3;
