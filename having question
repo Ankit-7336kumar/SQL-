@@ -1,0 +1,67 @@
+-- 31. Year-wise Average Salary
+SELECT YEAR(JoinDate) AS JoinYear,
+       AVG(Salary) AS AvgSalary
+FROM Employees
+GROUP BY YEAR(JoinDate);
+
+-- 32. Month-wise Number of Employees Joined
+SELECT MONTH(JoinDate) AS JoinMonth,
+       COUNT(*) AS Joiners
+FROM Employees
+GROUP BY MONTH(JoinDate);
+
+-- 33. Quarter-wise Total Salary
+SELECT QUARTER(JoinDate) AS JoinQtr,
+       SUM(Salary) AS TotalSalary
+FROM Employees
+GROUP BY QUARTER(JoinDate);
+
+-- 34. Number of Employees Joined in Quarter 1 and Quarter 3
+SELECT QUARTER(JoinDate) AS Qtr,
+       COUNT(*) AS Joiners
+FROM Employees
+WHERE QUARTER(JoinDate) IN (1, 3)
+GROUP BY QUARTER(JoinDate);
+
+-- 35. Year and Department-wise Employee Count
+SELECT YEAR(JoinDate) AS JoinYear,
+       Dept,
+       COUNT(*) AS EmpCount
+FROM Employees
+GROUP BY YEAR(JoinDate), Dept
+ORDER BY JoinYear, Dept;
+
+-- 36. Years Having More Than 6 Employees Joined
+SELECT YEAR(JoinDate) AS JoinYear,
+       COUNT(*) AS Joiners
+FROM Employees
+GROUP BY YEAR(JoinDate)
+HAVING COUNT(*) > 6;
+
+-- 37. Quarters Having Average Salary Greater Than 70000
+SELECT QUARTER(JoinDate) AS Qtr,
+       AVG(Salary) AS AvgSalary
+FROM Employees
+GROUP BY QUARTER(JoinDate)
+HAVING AVG(Salary) > 70000;
+
+-- 38. State-wise Employee Count and Average Salary
+SELECT State,
+       COUNT(*) AS EmpCount,
+       AVG(Salary) AS AvgSalary
+FROM Employees
+GROUP BY State;
+
+-- 39. State and Department-wise Employee Count
+SELECT State,
+       Dept,
+       COUNT(*) AS EmpCount
+FROM Employees
+GROUP BY State, Dept;
+
+-- 40. Cities Having More Than 2 Different Departments
+SELECT City,
+       COUNT(DISTINCT Dept) AS DeptCount
+FROM Employees
+GROUP BY City
+HAVING COUNT(DISTINCT Dept) > 2;
