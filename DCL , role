@@ -1,0 +1,49 @@
+
+CREATE DATABASE company_db;
+
+USE company_db;
+
+CREATE TABLE employees (
+    emp_id INT PRIMARY KEY,
+    emp_name VARCHAR(50),
+    salary INT
+);
+
+INSERT INTO employees VALUES
+(1, 'Amit', 40000),
+(2, 'Neha', 50000),
+(3, 'Rahul', 45000);
+
+CREATE ROLE 'employee_role';
+
+-- 6. Role ko permissions do
+GRANT SELECT, INSERT, UPDATE
+ON company_db.employees
+TO 'employee_role';
+
+-- 7. User create karo
+CREATE USER 'amit_user'@'localhost'
+IDENTIFIED BY 'Amit@123';
+
+-- 8. User ko role assign karo
+GRANT 'employee_role'
+TO 'amit_user'@'localhost';
+
+-- 9. Role ko default role bana do
+SET DEFAULT ROLE 'employee_role'
+TO 'amit_user'@'localhost';
+
+-- 10. Check karo role ko kya permissions mili hain
+SHOW GRANTS FOR 'employee_role';
+
+-- 11. User ki permissions check karo
+SHOW GRANTS FOR 'amit_user'@'localhost';
+
+-- 12. Agar UPDATE permission wapas leni ho
+REVOKE UPDATE
+ON company_db.employees
+FROM 'employee_role';
+
+-- 13. Agar role hi user se remove karna ho
+REVOKE 'employee_role'
+FROM 'amit_user'@'localhost';
